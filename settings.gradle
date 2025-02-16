@@ -1,2 +1,3 @@
 rootProject.name = 'UCC-Java-01'
+include 'exercise-01'
 
