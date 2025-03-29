@@ -34,10 +34,11 @@ public record BiggestInt(int limit)
                     // "short-circuit"; emit the current integer
                     // downstream and return false to stop
                     // processing stream elements.
-                    if (element >= limit) {
-                        downstream.push(element);
-                        return false;
-                    }
+                    // Note: Disabled this feature for now.
+//                    if (element >= limit) {
+//                        downstream.push(element);
+//                        return false;
+//                    }
 
                     // Return true to continue processing
                     // stream elements
