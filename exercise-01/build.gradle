@@ -6,6 +6,7 @@ group = 'org.example'
 version = '1.0-SNAPSHOT'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -16,4 +17,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    jvmArgs(['--enable-preview'])
+}
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += "--enable-preview"
+}
+
+tasks.withType(Test).configureEach {
+    jvmArgs += "--enable-preview"
+}
+
+tasks.withType(JavaExec).configureEach {
+    jvmArgs += '--enable-preview'
 }
