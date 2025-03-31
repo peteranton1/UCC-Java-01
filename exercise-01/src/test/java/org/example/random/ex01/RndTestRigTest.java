@@ -49,6 +49,7 @@ class RndTestRigTest {
                 })
                 .toList();
         List<String> expected = List.of(
+                "",
                 "             SecureRandom:         3173507",
                 "       L128X1024MixRandom:          677503",
                 "          L32X64MixRandom:          347860",
