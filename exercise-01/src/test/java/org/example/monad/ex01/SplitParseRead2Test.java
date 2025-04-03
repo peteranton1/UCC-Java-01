@@ -5,18 +5,22 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
-class SplitParseRead1Test {
+class SplitParseRead2Test {
 
     @ParameterizedTest
     @MethodSource("provideCasesOk")
     void splitParseDivide(String input, Double expected) {
-        SplitParseRead1 underTest = new SplitParseRead1();
-        var ans1 = underTest
-                .split(input)
-                .map(underTest::parse)
-                .map(underTest::divide)
+        SplitParseRead2 underTest = new SplitParseRead2();
+        Optional<String> inputOpt =
+                Optional.ofNullable(input);
+        var ans1 = inputOpt
+                .map(i -> tryer(_ -> underTest.split(i), i))
+                .map(i -> tryer(_ -> underTest.parse(i), i))
+                .map(i -> tryer(_ -> underTest.divide(i), i))
                 .orElse(null);
         Assertions.assertEquals(expected, ans1, "Test " + input);
     }
@@ -31,5 +35,16 @@ class SplitParseRead1Test {
                 Arguments.of("A10,4", null),
                 Arguments.of("10,0", null)
         );
+    }
+
+    private <T, R> R tryer(Function<T, R> fn, T t) {
+        try {
+            if (t != null) {
+                return fn.apply(t);
+            }
+        } catch (Exception _) {
+            // ignore exception
+        }
+        return null;
     }
 }

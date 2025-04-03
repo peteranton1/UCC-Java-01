@@ -2,7 +2,7 @@ package org.example.monad.ex01;
 
 import java.util.Optional;
 
-public class SplitParseRead1 {
+public class SplitParseRead2 {
     /*
     Ex01 - Perform the following actions on a string:
 
@@ -14,23 +14,20 @@ public class SplitParseRead1 {
     public record Pair<T>(T a, T b) {
     }
 
-    public Optional<Pair<String>> split(String input) {
+    public Pair<String> split(String input) {
         if(input == null){
-            return Optional.empty();
+            return null;
         }
         String[] strings = input.split(",");
         if (strings.length != 2) {
-            return Optional.empty();
+            return null;
         }
-        return Optional.of(new Pair<>(strings[0], strings[1]));
+        return new Pair<>(strings[0], strings[1]);
     }
 
     public Pair<Double> parse(Pair<String> input) {
         Double a = str2dbl(input.a());
         Double b = str2dbl(input.b());
-        if(a == null || b == null){
-            return null;
-        }
         return new Pair<>(a, b);
     }
 
@@ -44,10 +41,6 @@ public class SplitParseRead1 {
     }
 
     private Double str2dbl(String input) {
-        try {
-            return Double.parseDouble(input);
-        } catch(NumberFormatException e){
-            return null;
-        }
+        return Double.parseDouble(input);
     }
 }

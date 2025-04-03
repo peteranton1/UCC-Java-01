@@ -5,16 +5,20 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
-class SplitParseRead1Test {
+class SplitParseRead3Test {
 
     @ParameterizedTest
     @MethodSource("provideCasesOk")
     void splitParseDivide(String input, Double expected) {
-        SplitParseRead1 underTest = new SplitParseRead1();
-        var ans1 = underTest
-                .split(input)
+        SplitParseRead3 underTest = new SplitParseRead3();
+        Optional<String> inputOpt =
+                Optional.ofNullable(input);
+        var ans1 = inputOpt
+                .map(underTest::split)
                 .map(underTest::parse)
                 .map(underTest::divide)
                 .orElse(null);
