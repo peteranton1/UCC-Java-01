@@ -21,6 +21,7 @@ test {
 }
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += "--enable-preview"
+    options.compilerArgs += "-Xlint:preview"
 }
 
 tasks.withType(Test).configureEach {
