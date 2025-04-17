@@ -1,0 +1,3 @@
+test-d test-d test-d test-d
+Now a simple file reader and writer
+is often a joy to behold
