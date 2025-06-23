@@ -1,4 +1,5 @@
 rootProject.name = 'UCC-Java-01'
 include 'exercise-01'
 include 'project-01'
+include 'parser-02'
 
