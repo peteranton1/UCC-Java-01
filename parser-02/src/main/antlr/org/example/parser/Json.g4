@@ -17,6 +17,8 @@ additiveExpr
     | primaryExpr
     ;
 
+// Ignore Whitespaces
+WS: [ \t\r\n]+ -> skip;
 primaryExpr
     : NUM
     ;
