@@ -1,0 +1,37 @@
+plugins {
+    id "java"
+    id "application"
+    id "antlr"
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr("org.antlr:antlr4:4.13.2")
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+generateGrammarSource {
+    maxHeapSize = "64m"
+    arguments += ["-visitor", "-long-messages"]
+    //outputDirectory = file("build/generated-src/java/main/org/example/parser")
+}
+
+application {
+    mainClass.set("com.example.JsonParserMain")
+}
+
+tasks {
+    jar {
+    }
+}

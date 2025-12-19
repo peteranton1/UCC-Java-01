@@ -1,0 +1,17 @@
+here are some ids
+
+4 * 3
+4 / 2
+4 + 1
+4 - 0
+
+4 * 3 + 2 - 1 / 2
+
+{
+    a1 : "Some text here for a1"
+}
+
+{
+    b1 : "Some text here for b1",
+    b2 : 10
+}

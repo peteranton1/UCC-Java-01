@@ -1,9 +1,13 @@
 plugins {
-    id 'java'
+    id "java"
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+ext {
+    lombokVersion = "1.18.30"
+}
+
+group "org.example"
+version "1.0-SNAPSHOT"
 
 repositories {
     mavenLocal()
@@ -11,20 +15,20 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
-    implementation group: 'com.google.guava', name: 'guava', version: '32.0.1-android'
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    implementation "org.slf4j:slf4j-simple:1.7.32"
+    implementation "com.google.guava:guava:32.0.1-android"
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.20'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
 }
 
 test {
     useJUnitPlatform()
-    jvmArgs(['--enable-preview'])
+    jvmArgs(["--enable-preview"])
 }
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += "--enable-preview"
@@ -35,5 +39,5 @@ tasks.withType(Test).configureEach {
 }
 
 tasks.withType(JavaExec).configureEach {
-    jvmArgs += '--enable-preview'
+    jvmArgs += "--enable-preview"
 }

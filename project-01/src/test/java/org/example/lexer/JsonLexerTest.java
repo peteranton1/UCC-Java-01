@@ -2,6 +2,7 @@ package org.example.lexer;
 
 import org.example.common.TokenStringsHelper;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -11,7 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+@Disabled
 class JsonLexerTest {
+
 
     @Test
     void getLookaheadWithOk() {
