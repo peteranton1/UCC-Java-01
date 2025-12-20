@@ -1,20 +1,28 @@
-here
-are
-some
-ids
+here are some ids
 
-14 * 13
-24 / 22
-34 + 31
-44 - 40
+11 * 12
+21 / 22
+31 + 32
+41 - 42
 
-54 * 53 + 52 - 51 / 62
+41 + 42 * 41 - AA1 + 42 / 43
 
-{
-    a1 : "Some text here for a1"
-}
+A1 : "Banana"
 
 {
-    b1 : "Some text here for b1",
-    b2 : 10
+    B1 : "Apple is the best bet1" very good bananas 4
+    B2 : "Apple is the best bet2"
+    B3 : a1 + b2 / 12 - 13
+    B4 : a1
 }
+[
+    B1 "Apple is the best bet1" very good bananas 4
+    B2 "Apple is the best bet2"
+    B3 a1 + b2 / 12 - 13
+    B4 a1
+]
+
+c1: {
+    C1 : "Crab Apple is the best bet"
+}
+

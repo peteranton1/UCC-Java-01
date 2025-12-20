@@ -1,21 +1,44 @@
 package org.example.parser;
 
-import org.antlr.v4.runtime.tree.TerminalNode;
-
 import java.util.List;
 
 public class Qsl1BuildPrettyVisitor extends Qsl1BaseVisitor<String> {
 
-    public static final String SPACE = " ";
+    public static final String CRLF = "\r\n";
 
     @Override
     public String visitProg(Qsl1Parser.ProgContext ctx) {
-        return super.visitProg(ctx);
+        List<Qsl1Parser.LablExprContext> lablExprs = ctx.lablExpr();
+        StringBuilder str = new StringBuilder();
+        for (Qsl1Parser.LablExprContext lablExpr : lablExprs) {
+            str.append(visitLablExpr(lablExpr))
+                .append(CRLF);
+        }
+        return str.toString();
+    }
+
+    @Override
+    public String visitLablExpr(Qsl1Parser.LablExprContext ctx) {
+        Qsl1Parser.IdentContext ident = ctx.ident();
+        Qsl1Parser.ExprContext expr = ctx.expr();
+        StringBuilder str = new StringBuilder();
+        if (ident != null && !ident.isEmpty()) {
+            str.append(ident.getText());
+        }
+        if (expr != null && !expr.isEmpty()) {
+            str.append(expr.getText());
+        }
+        return str.toString();
     }
 
     @Override
     public String visitExpr(Qsl1Parser.ExprContext ctx) {
         return super.visitExpr(ctx);
+    }
+
+    @Override
+    public String visitIdent(Qsl1Parser.IdentContext ctx) {
+        return super.visitIdent(ctx);
     }
 
     @Override
@@ -25,55 +48,21 @@ public class Qsl1BuildPrettyVisitor extends Qsl1BaseVisitor<String> {
 
     @Override
     public String visitListExpr(Qsl1Parser.ListExprContext ctx) {
-        return super.visitChildren(ctx);
-    }
-
-    @Override
-    public String visitLablExpr(Qsl1Parser.LablExprContext ctx) {
-        return visitChildren(ctx);
+        return super.visitListExpr(ctx);
     }
 
     @Override
     public String visitNumExpr(Qsl1Parser.NumExprContext ctx) {
-        List<TerminalNode> opPlus = ctx.OP_PLUS();
-        List<TerminalNode> opMinus = ctx.OP_MINUS();
-        // ACTION : do something with op
-        return visitChildren(ctx);
+        return super.visitNumExpr(ctx);
     }
 
     @Override
     public String visitTerm(Qsl1Parser.TermContext ctx) {
-        List<TerminalNode> opMult = ctx.OP_MULT();
-        List<TerminalNode> opDiv = ctx.OP_DIV();
-        // ACTION : do something with ops
-        return visitChildren(ctx);
+        return super.visitTerm(ctx);
     }
 
     @Override
     public String visitFactor(Qsl1Parser.FactorContext ctx) {
-        TerminalNode number = ctx.NUMBER();
-        TerminalNode id = ctx.ID();
-        TerminalNode lbrack = ctx.LBRACK();
-        TerminalNode rbrack = ctx.RBRACK();
-        if(number != null) {
-            return SPACE + number.getText() + SPACE;
-        } else if(id != null) {
-            return SPACE + id.getText() + SPACE;
-        } else {
-            return SPACE + lbrack + visitChildren(ctx) + rbrack + SPACE;
-        }
-    }
-
-    @Override
-    public String visitTextExpr(Qsl1Parser.TextExprContext ctx) {
-        String text = ctx.TEXT().getText();
-        return SPACE + text + SPACE;
-    }
-
-    @Override
-    public String visitIdent(Qsl1Parser.IdentContext ctx) {
-        String id = ctx.ID().getText();
-        String colon = ctx.COLON().getText();
-        return SPACE + id + SPACE + colon + SPACE;
+        return super.visitFactor(ctx);
     }
 }
