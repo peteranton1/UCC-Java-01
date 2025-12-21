@@ -16,8 +16,9 @@ object      : LBRACE (lablExpr (lablExpr)* )? RBRACE ;
 listExpr    : LSQUARE (lablExpr (lablExpr)* )? RSQUARE ;
 assign      : ID OP_ASSIGN conditional ;
 conditional : multLogExpr
-            | LBRACK multLogExpr RBRACK ;
-multLogExpr : logExpr (opAndOr logExpr)* ;
+            | LBRACK multLogExpr RBRACK  ;
+multLogExpr : logExpr (opAndOr logExpr)*
+            | LBRACK logExpr (opAndOr logExpr)* RBRACK (opAndOr multLogExpr)* ;
 logExpr     : numExpr (opLogical numExpr)? ;
 opLogical   : OP_EQ | OP_NE | OP_GE | OP_LE | OP_GT | OP_LT ;
 opAndOr     : OP_AND | OP_OR ;
