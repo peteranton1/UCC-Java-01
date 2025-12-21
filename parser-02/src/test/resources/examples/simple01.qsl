@@ -10,19 +10,30 @@ here are some ids
 A1 : "Banana"
 
 {
-    B1 : "Apple is the best bet1" very good bananas 4
+    B1 : "Apple is the best bet1"
+    A1 "good bananas" 4.1
     B2 : "Apple is the best bet2"
     B3 : a1 + b2 / 12 - 13
     B4 : a1
 }
 [
-    B1 "Apple is the best bet1" very good bananas 4
-    B2 "Apple is the best bet2"
-    B3 a1 + b2 / 12 - 13
-    B4 a1
+    BA1 "Apple is the best bet1" very good bananas 4
+    BA2 "Apple is the best bet2"
+    BA3 a1 + b2 / 12 - 13
+    BA4 a1
 ]
 
-c1: {
-    C1 : "Crab Apple is the best bet"
+cc1: {
+    CC1 : "Crab Apple is the best bet"
 }
 
+dd1: {
+    DD1 : "Dibble Apple is the best bet"
+    condition (aaa1 == 1 && aaa2 == 2)
+    ee1: {
+        ff1 = 5 + dd1
+    }
+}
+ee1: {
+    ff1 = 5 + dd1
+}
