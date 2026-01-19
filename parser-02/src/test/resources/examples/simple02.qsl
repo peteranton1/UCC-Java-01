@@ -1,6 +1,6 @@
 module j123456
 
-def q1() {
+def q1 {
     options single
     qt "A yes/no question"
     ans "Y" "Yes"
@@ -8,15 +8,14 @@ def q1() {
     ans hidden default 9 "Unknown"
 }
 
-if(q1("Y"|2)) {
+exec q1
+if q1("Y"|2|s) {
     if(q1("Y"|2|D)) {
-        exec q1()
+        exec q1 q2 q3
     }
 } else if(q1(N)){
-    exec q1()
-} else if(q1(1)){
-    exec q1()
+    compute b1 = 1 + 2 - 3 * 4 / 2
 } else {
-    compute q2(9)
+    compute q2 = 9
 }
 

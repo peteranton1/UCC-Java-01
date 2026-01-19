@@ -11,16 +11,28 @@ module      :
 stmts       : stmt+
             ;
 
-stmt        : DEF varExpr block
-            | EXEC varExpr
-            | COMPUTE varExpr
+stmt        : defStmt
+            | execStmt
+            | computeStmt
             | ifBlock
             | clause+
             ;
 
-clause      :
-              clauseKwd textIdNum+
+defStmt     : DEF idDef block
             ;
+
+idDef       : ID
+            ;
+
+execStmt    : EXEC idDef+
+            ;
+
+computeStmt : COMPUTE idDef OP_EQUALS varSubExpr
+            ;
+
+clause      : clauseKwd textIdNum+
+            ;
+
 clauseKwd   : OPTIONS
             | QT
             | ANS
@@ -43,20 +55,19 @@ elseBlock :
             ELSE block
             ;
 
-condition   : LPAREN (varExpr (operator varExpr)*) RPAREN
+condition   : varSubExpr
+            | LPAREN varSubExpr RPAREN
             ;
 
 block       : LBRACE stmts RBRACE
             ;
 
-varExpr     : ID LPAREN varSubExpr RPAREN
-            ;
-
-varSubExpr  : (textIdNum (operator textIdNum)*)?
+varSubExpr  : textIdNum (operator textIdNum)*
             ;
 
 textIdNum   : TEXT
             | ID
+            | ID LPAREN varSubExpr? RPAREN
             | NUMBER
             ;
 
@@ -65,6 +76,15 @@ operator    : COMMA
             | OP_OR_OR
             | OP_AND
             | OP_AND_AND
+            | OP_EQUIV
+            | OP_LE
+            | OP_LT
+            | OP_GE
+            | OP_GT
+            | OP_PLUS
+            | OP_MINUS
+            | OP_MULT
+            | OP_DIV
             ;
 
 ANS         : 'ans' ;
@@ -82,6 +102,17 @@ OP_OR       : '|' ;
 OP_OR_OR    : '||' ;
 OP_AND      : '&' ;
 OP_AND_AND  : '&&' ;
+OP_EQUALS   : '=' ;
+OP_EQUIV    : '==' ;
+OP_NE       : '!=' ;
+OP_GE       : '>=' ;
+OP_LE       : '<=' ;
+OP_GT       : '>' ;
+OP_LT       : '<' ;
+OP_PLUS     : '+' ;
+OP_MINUS    : '-' ;
+OP_DIV      : '/' ;
+OP_MULT     : '*' ;
 OPTIONS     : 'options' ;
 LBRACE      : '{' ;
 RBRACE      : '}' ;
