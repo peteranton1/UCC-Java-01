@@ -1,0 +1,22 @@
+module j123456
+
+def q1() {
+    options single
+    qt "A yes/no question"
+    ans "Y" "Yes"
+    ans "N" "No"
+    ans hidden default 9 "Unknown"
+}
+
+if(q1("Y"|2)) {
+    if(q1("Y"|2|D)) {
+        exec q1()
+    }
+} else if(q1(N)){
+    exec q1()
+} else if(q1(1)){
+    exec q1()
+} else {
+    compute q2(9)
+}
+
