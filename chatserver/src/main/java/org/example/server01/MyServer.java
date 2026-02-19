@@ -16,7 +16,6 @@ public record MyServer(String name) {
         try (var serverSocket = new ServerSocket(portNumber)) {
             System.out.println(name + " : waiting for a client");
             try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
-                boolean quitter = false;
                 while(true) {
                     var client = serverSocket.accept();
                     executor.submit(() -> {
