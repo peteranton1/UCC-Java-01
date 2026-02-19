@@ -1,5 +1,7 @@
 package org.example.server01;
 
+import org.example.MyScanner;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

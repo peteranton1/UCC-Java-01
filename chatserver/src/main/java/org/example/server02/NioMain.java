@@ -1,9 +1,8 @@
-package org.example.server01;
+package org.example.server02;
 
 import org.example.MyScanner;
 
-public class MyMain {
-
+public class NioMain {
     private static final int PORT_NUMBER = 12345;
     private static final String SERVER = "server";
 
@@ -12,10 +11,10 @@ public class MyMain {
             String nameQn = scanner.ask("Client number (empty for server) : ");
             String name = (nameQn == null || nameQn.isBlank() ? SERVER : nameQn);
 
-            if(name.equalsIgnoreCase(SERVER)) {
-                new MyServer(name).start(PORT_NUMBER);
+            if (name.equalsIgnoreCase(SERVER)) {
+                new NioServer(name).start(PORT_NUMBER);
             } else {
-                new MyClient(name).start(PORT_NUMBER, scanner);
+                new NioClient(name).start(PORT_NUMBER, scanner);
             }
         }
     }
