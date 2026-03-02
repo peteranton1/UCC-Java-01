@@ -1,0 +1,6 @@
+my:
+  special:
+    config:
+      number: 99
+      page:
+        maxSize: 12

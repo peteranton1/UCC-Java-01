@@ -1,0 +1,66 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath ("org.flywaydb:flyway-core:12.0.3")
+        classpath ("org.flywaydb:flyway-gradle-plugin:12.0.3")
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.3'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.flywaydb.flyway' version '12.0.3'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+ext {
+    lombokVersion = "1.18.38"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    annotationProcessor ("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor ("org.springframework.boot:spring-boot-configuration-processor")
+    implementation ("org.flywaydb:flyway-core:12.0.3")
+    implementation ("org.projectlombok:lombok:${lombokVersion}")
+    implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation ("org.springframework.boot:spring-boot-starter-validation")
+    implementation ("org.springframework.boot:spring-boot-starter-webmvc")
+    runtimeOnly ("org.flywaydb:flyway-gradle-plugin:12.0.3")
+    runtimeOnly ("org.hsqldb:hsqldb")
+    testAnnotationProcessor ("org.projectlombok:lombok:${lombokVersion}")
+    testImplementation ("org.geckoprojects.libraries:net.datafaker:2.4.2")
+    testImplementation ("org.springframework.boot:spring-boot-starter-data-jpa-test")
+    testImplementation ("org.springframework.boot:spring-boot-starter-validation-test")
+    testImplementation ("org.springframework.boot:spring-boot-starter-webmvc-test")
+    testImplementation ("org.testcontainers:junit-jupiter:1.17.3")
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly ("org.junit.platform:junit-platform-launcher")
+
+}
+
+test {
+    useJUnitPlatform()
+}
